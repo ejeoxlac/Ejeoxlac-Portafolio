@@ -51,6 +51,13 @@ export default function Hero() {
               styles.btnPrimary,
               'h-auto rounded-none border-0 px-7 py-3 text-xs uppercase tracking-widest no-underline',
             )}
+            onClick={(e) => {
+              e.preventDefault()
+              const el = document.getElementById('proyectos')
+              if (!el) return
+              const top = el.getBoundingClientRect().top + window.scrollY - 56
+              window.scrollTo({ top, behavior: 'smooth' })
+            }}
           >
             Ver proyectos
           </a>

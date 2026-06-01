@@ -9,9 +9,19 @@ type TechnologyMarqueeProps = {
   className?: string
 }
 
-function repeatedIcons(icons: Technology[], repeat = 2) {
-  return Array.from({ length: repeat }).flatMap(() => icons)
+/** Repite iconos y duplica el set para el loop infinito (-50%). */
+function buildMarqueeTrack(icons: Technology[], minPerHalf = 12): Technology[] {
+  if (!icons.length) return []
+
+  let set = [...icons]
+  while (set.length < minPerHalf) {
+    set = [...set, ...icons]
+  }
+
+  return [...set, ...set]
 }
+
+const MARQUEE_DURATION = "55s"
 
 function IconRow({
   icons,
@@ -20,20 +30,21 @@ function IconRow({
   icons: Technology[]
   direction: "left" | "right"
 }) {
-  const items = repeatedIcons(icons, 2)
+  const items = buildMarqueeTrack(icons)
 
   return (
     <div className="w-full overflow-hidden">
       <div
         className={cn(
-          "flex w-max gap-4 py-2",
+          "flex w-max gap-4 py-2 motion-reduce:animate-none",
           direction === "left" ? "animate-scroll-left" : "animate-scroll-right",
         )}
+        style={{ animationDuration: MARQUEE_DURATION }}
       >
         {items.map((tech, index) => (
           <div
             key={`${tech.name}-${index}`}
-            className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[var(--surface)] p-3 ring-1 ring-[var(--border)] md:h-16 md:w-16"
+            className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[var(--surface)]/80 p-3 ring-1 ring-[var(--border)] backdrop-blur-sm md:h-16 md:w-16"
             title={tech.name}
           >
             <img
@@ -55,12 +66,20 @@ export function TechnologyMarquee({
   className,
 }: TechnologyMarqueeProps) {
   return (
-    <div className={cn("relative mx-auto w-full overflow-hidden", className)}>
+    <div
+      className={cn(
+        "relative mx-auto w-full overflow-hidden",
+        className,
+      )}
+      style={{
+        maskImage:
+          "linear-gradient(to right, transparent, black 6%, black 94%, transparent)",
+        WebkitMaskImage:
+          "linear-gradient(to right, transparent, black 6%, black 94%, transparent)",
+      }}
+    >
       <IconRow icons={iconsRow1} direction="left" />
       <IconRow icons={iconsRow2} direction="right" />
-
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-[var(--bg)] to-transparent sm:w-20 md:w-28" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-[var(--bg)] to-transparent sm:w-20 md:w-28" />
     </div>
   )
 }

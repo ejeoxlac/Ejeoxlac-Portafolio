@@ -64,11 +64,13 @@ const TECH_STACK: Technology[] = [
   },
 ]
 
-const splitIndex = Math.ceil(TECH_STACK.length / 2)
+// Misma cantidad de iconos en ambas filas para que el carrusel llene el ancho
+const rotate = <T,>(arr: T[], offset: number) =>
+  arr.map((_, i) => arr[(i + offset) % arr.length]!)
 
 export const TECHNOLOGIES = {
-  row1: TECH_STACK.slice(0, splitIndex),
-  row2: TECH_STACK.slice(splitIndex),
+  row1: TECH_STACK,
+  row2: rotate(TECH_STACK, 4),
 }
 
 export const PROJECTS = [

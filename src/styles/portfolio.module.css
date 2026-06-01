@@ -61,13 +61,13 @@
 
 /* ── Hero ── */
 .hero {
-  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 100px 0 80px;
   position: relative;
-  overflow: hidden;
+  scroll-margin-top: 56px;
 }
 .heroContent {
   position: relative;
@@ -134,7 +134,7 @@
 }
 .heroTechMarquee {
   width: 100%;
-  margin-bottom: 2rem;
+  margin: 0 auto 2rem;
   overflow: hidden;
 }
 .heroActions {
@@ -177,12 +177,12 @@
   inset: 0;
   pointer-events: none;
   z-index: 1;
+  overflow: hidden;
 }
 .heroCircle {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
   width: 500px;
   height: 500px;
   border: 1px solid var(--border);
@@ -235,10 +235,16 @@
 .section {
   padding: 100px 0;
   opacity: 0;
-  transform: translateY(32px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  scroll-margin-top: 56px;
 }
-.sectionVisible { opacity: 1; transform: translateY(0); }
+.sectionVisible { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .section {
+    opacity: 1;
+    transition: none;
+  }
+}
 .sectionLabel {
   font-size: 0.65rem;
   color: var(--accent);
