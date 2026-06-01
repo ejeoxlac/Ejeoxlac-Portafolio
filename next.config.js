@@ -6,7 +6,7 @@ const nextConfig = {
     unoptimized: true,
   },
   // Si tu repo NO es username.github.io, descomenta y cambia esto:
-  // basePath: '/tu-nombre-de-repo',
+  basePath: '/Ejeoxlac-Portafolio',
 }
 
 module.exports = nextConfig
