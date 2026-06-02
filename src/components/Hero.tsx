@@ -62,15 +62,16 @@ export default function Hero() {
             Ver proyectos
           </a>
         </div>
+
+        <div className={`${styles.scrollHint} animate-fade-up delay-9`}>
+          <span>scroll</span>
+          <div className={styles.scrollBar} />
+        </div>
       </div>
 
       <div className={styles.heroDecor}>
         <div className={styles.heroCircle} />
         <div className={styles.heroLine} />
-      </div>
-      <div className={styles.scrollHint}>
-        <span>scroll</span>
-        <div className={styles.scrollBar} />
       </div>
     </section>
   )

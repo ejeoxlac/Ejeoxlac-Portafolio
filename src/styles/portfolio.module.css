@@ -210,19 +210,15 @@
   animation: slideIn 1.5s ease 0.5s both;
 }
 .scrollHint {
-  position: absolute;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 8px;
+  margin-top: 2.5rem;
   font-size: 0.6rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--muted);
-  animation: fadeIn 1s ease 1.5s both;
 }
 .scrollBar {
   width: 1px;
@@ -277,7 +273,108 @@
   gap: 4rem;
   align-items: start;
 }
-.aboutText { display: flex; flex-direction: column; gap: 1.25rem; }
+.aboutMain {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+.aboutPhotoWrap {
+  flex-shrink: 0;
+  align-self: center;
+  width: min(280px, 36vw);
+  position: relative;
+  opacity: 0;
+  transform: translateY(28px) scale(0.97);
+  filter: blur(6px);
+  transition:
+    opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.aboutPhotoVisible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}
+.aboutPhotoWrap::before {
+  content: '';
+  position: absolute;
+  inset: 5% -8% -8%;
+  background: radial-gradient(ellipse 80% 70% at 50% 55%, var(--accent-dim) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 1s ease 0.25s;
+}
+.aboutPhotoVisible::before {
+  opacity: 1;
+}
+.aboutPhotoFrame {
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  width: 64px;
+  height: 64px;
+  border-top: 3px solid var(--accent);
+  border-left: 3px solid var(--accent);
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-8px, -8px);
+  transition:
+    opacity 0.5s ease 0.45s,
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.45s;
+}
+.aboutPhotoVisible .aboutPhotoFrame {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+.aboutPhotoInner {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+.aboutPhoto {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: center bottom;
+}
+.aboutPhotoFade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 42%;
+  background: linear-gradient(
+    to top,
+    var(--bg) 0%,
+    rgba(10, 10, 10, 0.92) 28%,
+    rgba(10, 10, 10, 0.45) 55%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+@media (prefers-reduced-motion: reduce) {
+  .aboutPhotoWrap {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+  .aboutPhotoWrap::before,
+  .aboutPhotoFrame {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+.aboutText { display: flex; flex-direction: column; gap: 1.25rem; flex: 1; min-width: 0; }
 .aboutText p { font-size: 0.875rem; color: #aaa; line-height: 1.8; }
 .aptitudesLabel {
   font-size: 0.65rem;
@@ -287,8 +384,20 @@
   margin-bottom: 1rem;
   display: block;
 }
-.aptitudes { display: flex; flex-wrap: wrap; gap: 8px; align-content: flex-start; }
-.aptitud {
+.aboutSide {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+.aptitudes,
+.techStackList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-content: flex-start;
+}
+.aptitud,
+.techTag {
   font-size: 0.7rem;
   padding: 6px 12px;
   border: 1px solid var(--border);
@@ -297,7 +406,33 @@
   animation: fadeUp 0.5s ease both;
   transition: all 0.2s ease;
 }
-.aptitud:hover { color: var(--accent); border-color: var(--accent-border); background: var(--accent-dim); }
+.aptitud:hover,
+.techTag:hover {
+  color: var(--accent);
+  border-color: var(--accent-border);
+  background: var(--accent-dim);
+}
+.techTag {
+  border-color: var(--accent-border);
+  color: var(--text);
+}
+.techStack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.techStackGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+.techStackGroupLabel {
+  font-size: 0.6rem;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+}
 
 /* ── Timeline ── */
 .timeline {
@@ -544,6 +679,8 @@
   .timeline,
   .contactGrid,
   .skillsGrid { grid-template-columns: 1fr; gap: 2rem; }
+  .aboutMain { flex-direction: column; align-items: center; }
+  .aboutPhotoWrap { width: min(240px, 70vw); }
   .projectShowcaseComponent {
     max-width: 100%;
   }

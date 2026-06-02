@@ -1,3 +1,6 @@
+/** Foto de perfil (PNG sin fondo, alta resolución). */
+export const PROFILE_IMAGE = '/images/bill-profile.png'
+
 export const SKILLS = [
   { name: 'Git', level: 'Alto', pct: 90 },
   { name: 'Instalación de Software', level: 'Alto', pct: 90 },
@@ -12,57 +15,120 @@ export const SKILLS = [
   { name: 'C#', level: 'Básico', pct: 35 },
 ]
 
+export type TechCategory = 'language' | 'library' | 'framework' | 'database' | 'tool' | 'os'
+
 export type Technology = {
   name: string
   icon: string
+  category: TechCategory
 }
 
-const TECH_STACK: Technology[] = [
+const TECH_ITEMS: Technology[] = [
   {
     name: 'Python',
+    category: 'language',
     icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg',
   },
   {
-    name: 'Git',
-    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg',
-  },
-  {
-    name: 'MySQL',
-    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg',
-  },
-  {
-    name: 'Docker',
-    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg',
-  },
-  {
     name: 'Java',
+    category: 'language',
     icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg',
   },
   {
     name: 'C#',
+    category: 'language',
     icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg',
   },
   {
-    name: 'Linux',
-    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg',
+    name: 'SQL',
+    category: 'language',
+    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg',
   },
   {
     name: 'Pandas',
+    category: 'library',
     icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg',
   },
   {
     name: 'Matplotlib',
+    category: 'library',
     icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matplotlib/matplotlib-original.svg',
   },
   {
-    name: 'Proxmox',
-    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/debian/debian-original.svg',
+    name: 'React',
+    category: 'library',
+    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
+  },
+  {
+    name: 'Next.js',
+    category: 'framework',
+    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg',
+  },
+  {
+    name: 'NestJS',
+    category: 'framework',
+    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nestjs/nestjs-original.svg',
+  },
+  {
+    name: 'Docker',
+    category: 'tool',
+    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg',
+  },
+  {
+    name: 'MySQL',
+    category: 'database',
+    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg',
+  },
+  {
+    name: 'SQLite',
+    category: 'database',
+    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg',
   },
   {
     name: 'XAMPP',
+    category: 'tool',
     icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apache/apache-original.svg',
   },
+  {
+    name: 'Git',
+    category: 'tool',
+    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg',
+  },
+  {
+    name: 'Obsidian',
+    category: 'tool',
+    icon: 'https://cdn.simpleicons.org/obsidian/7C3AED',
+  },
+  {
+    name: 'Windows',
+    category: 'os',
+    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows11/windows11-original.svg',
+  },
+  {
+    name: 'Linux',
+    category: 'os',
+    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg',
+  },
+  {
+    name: 'Proxmox',
+    category: 'os',
+    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/debian/debian-original.svg',
+  },
 ]
+
+export const TECH_STACK: Technology[] = TECH_ITEMS
+
+export const TECH_STACK_GROUPS = [
+  { title: 'Lenguajes de programación', category: 'language' as const },
+  { title: 'Bibliotecas', category: 'library' as const },
+  { title: 'Frameworks', category: 'framework' as const },
+  { title: 'Bases de datos', category: 'database' as const },
+  { title: 'Herramientas para desarrollo', category: 'tool' as const },
+  { title: 'Sistemas operativos', category: 'os' as const },
+].map((group) => ({
+  title: group.title,
+  items: TECH_ITEMS.filter((t) => t.category === group.category),
+}))
 
 // Misma cantidad de iconos en ambas filas para que el carrusel llene el ancho
 const rotate = <T,>(arr: T[], offset: number) =>
