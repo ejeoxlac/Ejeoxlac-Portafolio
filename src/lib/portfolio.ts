@@ -1,5 +1,7 @@
+const assetBase = process.env.NEXT_PUBLIC_BASE_PATH ?? ''
+
 /** Foto de perfil (PNG sin fondo, alta resolución). */
-export const PROFILE_IMAGE = '/images/bill-profile.png'
+export const PROFILE_IMAGE = `${assetBase}/images/bill-profile.png`
 
 export const SKILLS = [
   { name: 'Git', level: 'Alto', pct: 90 },
