@@ -1,9 +1,5 @@
 import type { Metadata } from 'next'
 import './globals.css'
-import { Geist } from "next/font/google";
-import { cn } from "@/lib/utils";
-
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 export const metadata: Metadata = {
   title: 'Bill Anthony Niño Riera — Ing. Informática',
@@ -13,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es" className={cn("dark", geist.variable)}>
+    <html lang="es" className="dark">
       <body className="min-h-screen antialiased">{children}</body>
     </html>
   )

@@ -13,6 +13,7 @@
   --accent: #c8ff00;
   --accent-dim: rgba(200, 255, 0, 0.08);
   --accent-border: rgba(200, 255, 0, 0.2);
+  --font-sans: 'Syne', sans-serif;
   --font-display: 'Syne', sans-serif;
   --font-mono: 'DM Mono', monospace;
 }
@@ -65,8 +66,7 @@ body::after {
 
 @layer base {
   .theme {
-    --font-heading: var(--font-sans);
-    --font-sans: var(--font-sans);
+    --font-heading: var(--font-display);
   }
   :root {
     --background: oklch(1 0 0);

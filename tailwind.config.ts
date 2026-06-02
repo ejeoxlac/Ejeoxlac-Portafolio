@@ -12,7 +12,7 @@ const config: Config = {
     extend: {
       fontFamily: {
         mono: ['var(--font-mono)', 'DM Mono', 'monospace'],
-        sans: ['var(--font-sans)', 'Geist', 'sans-serif'],
+        sans: ['var(--font-sans)', 'Syne', 'sans-serif'],
         display: ['var(--font-display)', 'Syne', 'sans-serif'],
       },
       colors: {
