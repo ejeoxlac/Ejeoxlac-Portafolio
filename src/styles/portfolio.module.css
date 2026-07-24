@@ -650,11 +650,18 @@
 }
 .contactItem:hover { color: var(--accent); border-color: var(--accent-border); background: var(--accent-dim); }
 .contactIcon {
-  font-size: 0.9rem;
   color: var(--accent);
   width: 20px;
-  text-align: center;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
+}
+.contactIconSvg {
+  width: 16px;
+  height: 16px;
+  display: block;
 }
 
 /* ── Footer ── */
