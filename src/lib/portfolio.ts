@@ -141,42 +141,164 @@ export const TECHNOLOGIES = {
   row2: rotate(TECH_STACK, 4),
 }
 
-export const PROJECTS = [
+export type Project = {
+  id: string
+  name: string
+  full: string
+  role: string
+  desc: string
+  tech: string[]
+  tag: string
+  year: string
+  image: string
+  repoStatus: 'public' | 'private'
+  repoUrl?: string
+}
+
+/** Placeholder neutro (gradiente + nombre) hasta tener capturas reales. */
+function projectPlaceholder(name: string, from: string, to: string): string {
+  const svg = `
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="600" viewBox="0 0 900 600">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="${from}"/>
+      <stop offset="100%" stop-color="${to}"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="600" fill="url(#g)"/>
+  <text x="450" y="310" text-anchor="middle" fill="rgba(255,255,255,0.92)"
+    font-family="ui-sans-serif, system-ui, sans-serif" font-size="42" font-weight="600">${name}</text>
+</svg>`.trim()
+
+  return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`
+}
+
+export const PROJECTS: Project[] = [
   {
     id: '01',
-    name: 'SIEI',
-    full: 'Sistema de Inventario de Equipos Informáticos',
-    role: 'Diseñador & Desarrollador',
-    desc: 'Aplicación para registro, control y seguimiento de recursos informáticos desarrollada para la Alcaldía de Cabimas.',
-    tech: ['Python', 'MySQL', 'Pandas', 'Matplotlib'],
-    tag: 'Producción',
-    year: '2024',
-    image:
-      'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=900&q=80',
+    name: 'GRAU-UPTZ',
+    full: 'Sistema de Gestión de Procesos Académicos Universitarios',
+    role: 'Desarrollador principal',
+    desc: 'Sistema de gestión de procesos académicos universitarios: control de notas, planes de estudio, registro de estudiantes, matrícula automática, evaluación docente y reportes administrativos.',
+    tech: [
+      'Next.js 15',
+      'NestJS',
+      'Prisma ORM',
+      'PostgreSQL',
+      'JWT',
+      'NextAuth.js',
+      'React Query',
+      'Tailwind CSS',
+      'shadcn/ui',
+      'Swagger',
+    ],
+    tag: 'En desarrollo activo',
+    year: '2026',
+    image: projectPlaceholder('GRAU-UPTZ', '#1e293b', '#334155'),
+    repoStatus: 'private',
   },
   {
     id: '02',
-    name: 'Gestión de Vacunas',
-    full: 'Software de Gestión de Vacunas',
-    role: 'Tester',
-    desc: 'App para la administración y control de carnet de vacunación en ambulatorio, desarrollada para UNERMB.',
-    tech: ['Java (JDK)', 'MySQL', 'XAMPP'],
-    tag: 'Estudio',
-    year: '2023',
-    image:
-      'https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=900&q=80',
+    name: 'SIGUM',
+    full: 'Sistema de Registro de Camiones de Agua',
+    role: 'Desarrollador principal',
+    desc: 'Sistema para el registro de camiones de agua de la parroquia, con dashboard, listado, detalle por camión y descarga de código QR con logos (app + Alcaldía de Cabimas).',
+    tech: ['Next.js 14', 'Material UI', 'Recharts', 'NestJS', 'Prisma ORM', 'JWT'],
+    tag: 'Desarrollado — no implementado',
+    year: '2025',
+    image: projectPlaceholder('SIGUM', '#0f172a', '#1e3a5f'),
+    repoStatus: 'private',
   },
   {
     id: '03',
-    name: 'Gestión de Pacientes',
-    full: 'Software de Gestión de Pacientes',
-    role: 'Tester',
-    desc: 'Aplicación para el registro y control del historial médico en ambulatorio, desarrollada para UNERMB.',
-    tech: ['Java (JDK)', 'MySQL', 'XAMPP'],
-    tag: 'Estudio',
-    year: '2023',
-    image:
-      'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=900&q=80',
+    name: 'SCCSC',
+    full: 'Sistema Comunitario Cabimas',
+    role: 'Desarrollador principal',
+    desc: 'Registro y seguimiento de necesidades comunitarias por parroquia en Cabimas, con roles diferenciados (Alcalde, Administrador, Coordinador, Director, Desarrollador), mapas y dashboards.',
+    tech: [
+      'Next.js',
+      'Material UI',
+      'TypeScript',
+      'NestJS',
+      'Prisma ORM',
+      'React-Leaflet',
+      'OpenStreetMap',
+      'Recharts',
+      'Multer',
+    ],
+    tag: '80% — Pausado',
+    year: '2025',
+    image: projectPlaceholder('SCCSC', '#14532d', '#1e3a5f'),
+    repoStatus: 'private',
+  },
+  {
+    id: '04',
+    name: 'PIRC',
+    full: 'Sistema de Registro Civil',
+    role: 'Colaborador (mejoras y finalización)',
+    desc: 'Gestión de registro civil de nacimientos, defunciones y reconocimientos, con generación de actas en PDF y control territorial por estados/municipios/parroquias.',
+    tech: [
+      'Laravel 11',
+      'PHP 8.2',
+      'Livewire 3',
+      'Laravel Jetstream',
+      'Tailwind CSS',
+      'Alpine.js',
+      'MySQL/PostgreSQL',
+      'DomPDF',
+    ],
+    tag: 'Pausado — mejoras pendientes',
+    year: '2024',
+    image: projectPlaceholder('PIRC', '#3f2e1e', '#5c4033'),
+    repoStatus: 'private',
+  },
+  {
+    id: '05',
+    name: 'MIC',
+    full: 'Mapa Interactivo de Cabimas',
+    role: 'Desarrollador principal',
+    desc: 'Mapa interactivo offline con ubicaciones de entidades públicas de Cabimas (salud, seguridad, bomberos, gobierno), con filtros, marcadores personalizados y pin arrastrable para obtener coordenadas.',
+    tech: ['Next.js', 'React', 'Leaflet', 'React-Leaflet'],
+    tag: 'Exploración técnica',
+    year: '2025',
+    image: projectPlaceholder('MIC', '#1e293b', '#0e7490'),
+    repoStatus: 'public',
+    repoUrl: 'https://github.com/ejeoxlac/MIC',
+  },
+  {
+    id: '06',
+    name: 'SIEI',
+    full: 'Sistema de Inventario de Equipos Informáticos',
+    role: 'Desarrollador principal',
+    desc: 'Gestión de bienes muebles vinculados a departamentos de una organización, con seguimiento detallado de activos asignados por área. Proyecto universitario con intención de implementación institucional.',
+    tech: ['Python', 'MySQL', 'Pandas', 'Matplotlib'],
+    tag: 'En planes de migrar a web',
+    year: '2024',
+    image: projectPlaceholder('SIEI', '#1e293b', '#475569'),
+    repoStatus: 'public',
+    repoUrl: 'https://github.com/ejeoxlac/SIEI',
+  },
+]
+
+export type Contribution = {
+  project: string
+  author: string
+  repoUrl: string
+  description: string
+  contribution: string
+  tech?: string[]
+}
+
+export const CONTRIBUTIONS: Contribution[] = [
+  {
+    project: 'Obsidian--ITS-Theme',
+    author: 'ITS Theme (Obsidian)',
+    repoUrl: 'https://github.com/ejeoxlac/Obsidian--ITS-Theme',
+    description:
+      'Tema visual para Obsidian, un editor de notas basado en Markdown.',
+    contribution:
+      'Solucioné un problema de interlineado en el archivo theme.css: en la línea 2980, la propiedad line-height (establecida en 1.3em) hacía que el texto de los títulos de las tarjetas en modo Canvas se solapara al hacer zoom out, especialmente en recuadros pequeños o con títulos largos. Cambié el valor a \'normal\' para corregir el solapamiento.',
+    tech: ['CSS'],
   },
 ]
 
@@ -206,6 +328,7 @@ export const NAV_LINKS = [
   'sobre-mi',
   'experiencia',
   'proyectos',
+  'contribuciones',
   'skills',
   'contacto',
 ] as const

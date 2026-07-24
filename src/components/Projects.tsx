@@ -7,9 +7,16 @@ import Section from './Section'
 
 const showcaseProjects = PROJECTS.map((project) => ({
   title: project.name,
+  full: project.full,
   description: project.desc,
+  role: project.role,
+  tech: project.tech,
+  tag: project.tag,
   year: project.year,
   image: project.image,
+  repoStatus: project.repoStatus,
+  repoUrl: project.repoUrl,
+  link: project.repoStatus === 'public' ? project.repoUrl : undefined,
 }))
 
 export default function Projects() {
