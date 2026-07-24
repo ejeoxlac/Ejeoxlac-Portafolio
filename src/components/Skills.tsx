@@ -7,7 +7,7 @@ export default function Skills() {
   return (
     <Section id="skills">
       <div className="container">
-        <p className={styles.sectionLabel}>// 04</p>
+        <p className={styles.sectionLabel}>// 05</p>
         <h2 className={styles.sectionTitle}>Competencias</h2>
         <div className={styles.skillsGrid}>
           {SKILLS.map((s, i) => (

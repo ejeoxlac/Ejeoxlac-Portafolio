@@ -85,7 +85,7 @@ export default function Contact() {
   return (
     <Section id="contacto">
       <div className="container">
-        <p className={styles.sectionLabel}>// 05</p>
+        <p className={styles.sectionLabel}>// 06</p>
         <h2 className={styles.sectionTitle}>Contacto</h2>
         <div className={styles.contactGrid}>
           <p className={styles.contactText}>
