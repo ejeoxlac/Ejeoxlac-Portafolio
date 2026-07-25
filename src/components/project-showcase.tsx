@@ -49,10 +49,22 @@ export function ProjectShowcase({
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [smoothPosition, setSmoothPosition] = useState({ x: 0, y: 0 })
   const [isVisible, setIsVisible] = useState(false)
+  const [canHover, setCanHover] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
   const animationRef = useRef<number | null>(null)
 
   useEffect(() => {
+    const mediaQuery = window.matchMedia("(hover: hover) and (pointer: fine)")
+    const updateCanHover = () => setCanHover(mediaQuery.matches)
+
+    updateCanHover()
+    mediaQuery.addEventListener("change", updateCanHover)
+    return () => mediaQuery.removeEventListener("change", updateCanHover)
+  }, [])
+
+  useEffect(() => {
+    if (!canHover) return
+
     const lerp = (start: number, end: number, factor: number) => {
       return start + (end - start) * factor
     }
@@ -72,7 +84,7 @@ export function ProjectShowcase({
         cancelAnimationFrame(animationRef.current)
       }
     }
-  }, [mousePosition])
+  }, [mousePosition, canHover])
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (containerRef.current) {
@@ -85,13 +97,26 @@ export function ProjectShowcase({
   }
 
   const handleMouseEnter = (index: number) => {
+    if (!canHover || expandedIndex !== null) return
     setHoveredIndex(index)
     setIsVisible(true)
   }
 
   const handleMouseLeave = () => {
+    if (!canHover) return
     setHoveredIndex(null)
     setIsVisible(false)
+  }
+
+  const toggleExpanded = (index: number) => {
+    setExpandedIndex((current) => {
+      const next = current === index ? null : index
+      if (next !== null) {
+        setHoveredIndex(null)
+        setIsVisible(false)
+      }
+      return next
+    })
   }
 
   if (!projects.length) return null
@@ -99,42 +124,44 @@ export function ProjectShowcase({
   return (
     <section
       ref={containerRef}
-      onMouseMove={handleMouseMove}
+      onMouseMove={canHover ? handleMouseMove : undefined}
       className={`relative w-full max-w-3xl ${className}`}
     >
       <h2 className="text-muted-foreground text-sm font-medium tracking-wide uppercase mb-8">
         {label}
       </h2>
 
-      <div
-        className="pointer-events-none fixed z-50 overflow-hidden rounded-xl shadow-2xl"
-        style={{
-          left: containerRef.current?.getBoundingClientRect().left ?? 0,
-          top: containerRef.current?.getBoundingClientRect().top ?? 0,
-          transform: `translate3d(${smoothPosition.x + 20}px, ${smoothPosition.y - 100}px, 0)`,
-          opacity: isVisible ? 1 : 0,
-          scale: isVisible ? 1 : 0.8,
-          transition:
-            "opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), scale 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-        }}
-      >
-        <div className="relative w-[280px] h-[180px] bg-secondary rounded-xl overflow-hidden">
-          {projects.map((project, index) => (
-            <img
-              key={`${project.title}-${index}`}
-              src={project.image}
-              alt={project.title}
-              className="absolute inset-0 w-full h-full object-cover transition-all duration-500 ease-out"
-              style={{
-                opacity: hoveredIndex === index ? 1 : 0,
-                scale: hoveredIndex === index ? 1 : 1.1,
-                filter: hoveredIndex === index ? "none" : "blur(10px)",
-              }}
-            />
-          ))}
-          <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent" />
+      {canHover && (
+        <div
+          className="pointer-events-none fixed z-50 overflow-hidden rounded-xl shadow-2xl"
+          style={{
+            left: containerRef.current?.getBoundingClientRect().left ?? 0,
+            top: containerRef.current?.getBoundingClientRect().top ?? 0,
+            transform: `translate3d(${smoothPosition.x + 20}px, ${smoothPosition.y - 100}px, 0)`,
+            opacity: isVisible && expandedIndex === null ? 1 : 0,
+            scale: isVisible && expandedIndex === null ? 1 : 0.8,
+            transition:
+              "opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), scale 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+          }}
+        >
+          <div className="relative w-[280px] h-[180px] bg-secondary rounded-xl overflow-hidden">
+            {projects.map((project, index) => (
+              <img
+                key={`${project.title}-${index}`}
+                src={project.image}
+                alt={project.title}
+                className="absolute inset-0 w-full h-full object-cover transition-all duration-500 ease-out"
+                style={{
+                  opacity: hoveredIndex === index ? 1 : 0,
+                  scale: hoveredIndex === index ? 1 : 1.1,
+                  filter: hoveredIndex === index ? "none" : "blur(10px)",
+                }}
+              />
+            ))}
+            <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent" />
+          </div>
         </div>
-      </div>
+      )}
 
       <div className="space-y-0">
         {projects.map((project, index) => {
@@ -216,7 +243,7 @@ export function ProjectShowcase({
                       onClick={(e) => {
                         e.preventDefault()
                         e.stopPropagation()
-                        setExpandedIndex(isExpanded ? null : index)
+                        toggleExpanded(index)
                       }}
                     >
                       {isExpanded ? "Ocultar detalles" : "Ver detalles"}
