@@ -26,10 +26,13 @@ export default function Home() {
 
       <footer className={styles.footer}>
         <div className="container">
-          <span className={styles.footerText}>
-            Bill Anthony Niño Riera © {new Date().getFullYear()}
-          </span>
-          <span className={styles.footerMono}>ing. informática · v1.0.0</span>
+          <div className={styles.footerInfo}>
+            <span className={styles.footerText}>
+              Bill Anthony Niño Riera © {new Date().getFullYear()}
+            </span>
+            <span className={styles.footerMono}>ing. informática</span>
+          </div>
+          <span className={styles.footerMono}>v1.0.0</span>
         </div>
       </footer>
     </main>

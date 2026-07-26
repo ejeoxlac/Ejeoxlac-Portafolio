@@ -791,6 +791,11 @@
   justify-content: space-between;
   align-items: center;
 }
+.footerInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
 .footerText { font-size: 0.75rem; color: var(--muted); }
 .footerMono { font-size: 0.65rem; color: var(--border); letter-spacing: 0.1em; }
 

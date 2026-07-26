@@ -252,6 +252,15 @@ export function ProjectShowcase({
 
                   {isExpanded && (
                     <div className="mt-3 space-y-2 text-sm">
+                      <div className="relative mb-1 h-24 w-36 overflow-hidden rounded-md bg-secondary shadow-sm [@media(hover:hover)]:hidden">
+                        <img
+                          src={project.image}
+                          alt={project.title}
+                          className="h-full w-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent" />
+                      </div>
+
                       {project.full && (
                         <p className="text-foreground/80">
                           <span className="text-muted-foreground">Proyecto: </span>
