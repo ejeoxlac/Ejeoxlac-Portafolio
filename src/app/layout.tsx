@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import BackgroundMotion from '@/components/BackgroundMotion'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -10,7 +11,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es" className="dark">
-      <body className="min-h-screen antialiased">{children}</body>
+      <body className="min-h-screen antialiased">
+        <BackgroundMotion />
+        {children}
+      </body>
     </html>
   )
 }

@@ -1,34 +1,50 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@500&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --bg: #0a0a0a;
-  --surface: #111111;
-  --border: #1e1e1e;
-  --text: #e8e8e8;
-  --muted: #666666;
-  --accent: #c8ff00;
-  --accent-dim: rgba(200, 255, 0, 0.08);
-  --accent-border: rgba(200, 255, 0, 0.2);
-  --font-sans: 'Syne', sans-serif;
-  --font-display: 'Syne', sans-serif;
-  --font-mono: 'DM Mono', monospace;
+  --bg: #131315;
+  --surface: #201f22;
+  --surface-low: #1c1b1d;
+  --surface-lowest: #0e0e10;
+  --border: #3f3f46;
+  --text: #e5e1e4;
+  --muted: #a1a1aa;
+  --accent: #d2f000;
+  --accent-dim: rgba(210, 240, 0, 0.08);
+  --accent-border: rgba(210, 240, 0, 0.25);
+  --on-accent: #2c3400;
+  --success: #22c55e;
+  --font-sans: 'Inter', sans-serif;
+  --font-display: 'Montserrat', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --nav-height: 80px;
+  --section-gap: 160px;
+  --margin-desktop: 80px;
+  --margin-mobile: 24px;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: auto; overflow-x: hidden; scroll-padding-top: 56px; }
+html { scroll-behavior: smooth; overflow-x: hidden; scroll-padding-top: var(--nav-height); }
 body { overflow-x: hidden; }
 
 ::-webkit-scrollbar { width: 2px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--border); }
 
-::selection { background: var(--accent); color: var(--bg); }
+::selection { background: var(--accent); color: var(--on-accent); }
 
-.container { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--margin-mobile);
+}
+
+@media (min-width: 768px) {
+  .container { padding: 0 var(--margin-desktop); }
+}
 
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(24px); }
@@ -36,6 +52,12 @@ body { overflow-x: hidden; }
 }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+@keyframes scrollLine {
+  0% { transform: scaleY(0); transform-origin: top; }
+  50% { transform: scaleY(1); transform-origin: top; }
+  50.1% { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
 @keyframes slideIn { from { width: 0; } to { width: 100%; } }
 @keyframes spin {
   from { transform: translate(-50%, -50%) rotate(0deg); }
@@ -140,9 +162,11 @@ body::after {
   }
   body {
     @apply bg-background text-foreground;
-    font-family: var(--font-mono);
-    font-weight: 300;
+    font-family: var(--font-sans);
+    font-weight: 400;
     line-height: 1.6;
     overflow-x: hidden;
+    background-color: var(--bg);
+    color: var(--text);
   }
 }

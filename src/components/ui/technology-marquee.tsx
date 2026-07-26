@@ -44,7 +44,7 @@ function IconRow({
         {items.map((tech, index) => (
           <div
             key={`${tech.name}-${index}`}
-            className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[var(--surface)]/80 p-3 ring-1 ring-[var(--border)] backdrop-blur-sm md:h-16 md:w-16"
+            className="group flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[var(--surface)]/90 p-3 ring-1 ring-[var(--border)] backdrop-blur-sm transition-all duration-200 md:h-16 md:w-16 hover:ring-[var(--accent)] hover:scale-105"
             title={tech.name}
           >
             <img

@@ -33,7 +33,7 @@ export default function Section({
       id={id}
       className={`${styles.section} ${visible ? styles.sectionVisible : ''}`}
     >
-      {children}
+      <div className={styles.sectionInner}>{children}</div>
     </section>
   )
 }

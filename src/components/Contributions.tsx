@@ -1,14 +1,6 @@
-import { Badge } from '@/components/ui/badge'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
 import { CONTRIBUTIONS } from '@/lib/portfolio'
-import styles from '@/styles/portfolio.module.css'
 import { ArrowUpRight } from 'lucide-react'
+import styles from '@/styles/portfolio.module.css'
 import Section from './Section'
 
 export default function Contributions() {
@@ -23,53 +15,35 @@ export default function Contributions() {
 
         <div className={styles.contributionsList}>
           {CONTRIBUTIONS.map((item) => (
-            <Card
-              key={item.repoUrl}
-              size="sm"
-              className={`ring-0 shadow-none ${styles.contributionCard}`}
-            >
-              <CardHeader className={styles.contributionHeader}>
-                <div className={styles.contributionTitleRow}>
-                  <CardTitle className={styles.contributionName}>
-                    <a
-                      href={item.repoUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.contributionLink}
-                    >
-                      {item.project}
-                      <ArrowUpRight className={styles.contributionLinkIcon} aria-hidden />
-                    </a>
-                  </CardTitle>
-                  <Badge
-                    variant="outline"
-                    className="text-[10px] uppercase tracking-wide"
-                  >
-                    Contribución
-                  </Badge>
+            <article key={item.repoUrl} className={styles.contributionCardV4}>
+              <div className={styles.contributionCardHeader}>
+                <a
+                  href={item.repoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.contributionCardTitle}
+                >
+                  {item.project}
+                  <ArrowUpRight size={16} aria-hidden="true" />
+                </a>
+                <span className={styles.contributionBadge}>Contribución</span>
+              </div>
+              <p className={styles.contributionAuthor}>{item.author}</p>
+              <p className={styles.contributionDesc}>{item.description}</p>
+              <div className={styles.contributionDetail}>
+                <p className={styles.contributionDetailLabel}>Mi aporte</p>
+                <p className={styles.contributionText}>{item.contribution}</p>
+              </div>
+              {item.tech && item.tech.length > 0 && (
+                <div className={styles.contributionTech}>
+                  {item.tech.map((tech) => (
+                    <span key={tech} className={styles.projectTechTag}>
+                      {tech}
+                    </span>
+                  ))}
                 </div>
-                <CardDescription className={styles.contributionAuthor}>
-                  {item.author}
-                </CardDescription>
-              </CardHeader>
-
-              <CardContent className={styles.contributionBody}>
-                <p className={styles.contributionDesc}>{item.description}</p>
-                <div className={styles.contributionDetail}>
-                  <p className={styles.contributionDetailLabel}>Mi aporte</p>
-                  <p className={styles.contributionText}>{item.contribution}</p>
-                </div>
-                {item.tech && item.tech.length > 0 && (
-                  <div className={styles.contributionTech}>
-                    {item.tech.map((t) => (
-                      <Badge key={t} variant="secondary" className="text-[10px]">
-                        {t}
-                      </Badge>
-                    ))}
-                  </div>
-                )}
-              </CardContent>
-            </Card>
+              )}
+            </article>
           ))}
         </div>
       </div>

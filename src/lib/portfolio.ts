@@ -323,12 +323,16 @@ export const EDUCATION = [
   },
 ]
 
-export const NAV_LINKS = [
-  'inicio',
-  'sobre-mi',
-  'experiencia',
-  'proyectos',
-  'contribuciones',
-  'skills',
-  'contacto',
+export const NAV_ITEMS = [
+  { id: 'inicio', label: 'Inicio' },
+  { id: 'sobre-mi', label: 'Sobre mí' },
+  { id: 'experiencia', label: 'Experiencia' },
+  { id: 'proyectos', label: 'Proyectos' },
+  { id: 'contribuciones', label: 'Contribuciones' },
+  { id: 'skills', label: 'Skills' },
+  { id: 'contacto', label: 'Contacto' },
 ] as const
+
+export const NAV_LINKS = NAV_ITEMS.map((item) => item.id)
+
+export const RESUME_URL = 'https://beacons.ai/ejeoxlac'
