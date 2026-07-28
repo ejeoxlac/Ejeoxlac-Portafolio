@@ -83,13 +83,25 @@ export default function BackgroundMotion() {
         </div>
 
         <motion.div
+          className={`${styles.orb} ${styles.orbMuted} ${styles.orbNavGlow}`}
+          animate={
+            prefersReducedMotion
+              ? undefined
+              : {
+                  x: [0, 20, -15, 0],
+                  scale: [1, 1.04, 0.98, 1],
+                }
+          }
+          transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
+        />
+        <motion.div
           className={`${styles.orb} ${styles.orbAccent} ${styles.orb1}`}
           animate={
             prefersReducedMotion
               ? undefined
               : {
                   x: [0, 40, -25, 0],
-                  y: [0, -50, 30, 0],
+                  y: [0, -30, 20, 0],
                   scale: [1, 1.12, 0.92, 1],
                 }
           }

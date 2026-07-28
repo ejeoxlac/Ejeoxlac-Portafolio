@@ -4,6 +4,8 @@ const FOOTER_SOCIAL = [
   { href: 'https://github.com/ejeoxlac', label: 'GitHub' },
   { href: 'https://www.linkedin.com/in/ejeoxlac/', label: 'LinkedIn' },
   { href: 'https://x.com/ejeoxlac', label: 'X' },
+  { href: 'https://www.instagram.com/ejeoxlac/', label: 'Instagram' },
+  { href: 'https://beacons.ai/ejeoxlac', label: 'Beacons' },
 ] as const
 
 export default function Footer() {

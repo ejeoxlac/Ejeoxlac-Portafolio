@@ -62,7 +62,21 @@
   width: 520px;
   height: 520px;
   left: 68%;
-  top: 8%;
+  top: -5%;
+}
+
+.orbNavGlow {
+  width: min(900px, 90vw);
+  height: 280px;
+  left: 50%;
+  top: -120px;
+  translate: -50% 0;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(160, 160, 165, 0.2) 0%,
+    rgba(100, 100, 105, 0.08) 45%,
+    transparent 72%
+  );
 }
 
 .orb2 {

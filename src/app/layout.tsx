@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import BackgroundMotion from '@/components/BackgroundMotion'
+import Nav from '@/components/Nav'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -13,6 +14,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="es" className="dark">
       <body className="min-h-screen antialiased">
         <BackgroundMotion />
+        <Nav />
         {children}
       </body>
     </html>
