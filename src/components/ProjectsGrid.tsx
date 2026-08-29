@@ -28,7 +28,7 @@ const PROJECT_ICONS: Record<string, LucideIcon> = {
 }
 
 const FEATURED_PROJECT_ID = '02'
-const PREVIEW_WIDTH = 280
+const PREVIEW_WIDTH = 320
 const PREVIEW_HEIGHT = 180
 const PREVIEW_GAP = 16
 const PREVIEW_LERP = 0.13
