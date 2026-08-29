@@ -261,7 +261,7 @@ export const PROJECTS: Project[] = [
     tech: ['Next.js', 'React', 'Leaflet', 'React-Leaflet'],
     tag: 'Exploración técnica',
     year: '2025',
-    image: projectPlaceholder('MIC', '#1e293b', '#0e7490'),
+    image: 'https://raw.githubusercontent.com/ejeoxlac/MIC/main/Docs/Preview/mic.png',
     repoStatus: 'public',
     repoUrl: 'https://github.com/ejeoxlac/MIC',
   },
