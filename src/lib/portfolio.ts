@@ -153,6 +153,7 @@ export type Project = {
   image: string
   repoStatus: 'public' | 'private'
   repoUrl?: string
+  liveUrl?: string
 }
 
 /** Placeholder neutro (gradiente + nombre) hasta tener capturas reales. */
@@ -259,11 +260,12 @@ export const PROJECTS: Project[] = [
     role: 'Desarrollador principal',
     desc: 'Mapa interactivo offline con ubicaciones de entidades públicas de Cabimas (salud, seguridad, bomberos, gobierno), con filtros, marcadores personalizados y pin arrastrable para obtener coordenadas.',
     tech: ['Next.js', 'React', 'Leaflet', 'React-Leaflet'],
-    tag: 'Exploración técnica',
+    tag: 'Publicado',
     year: '2025',
     image: 'https://raw.githubusercontent.com/ejeoxlac/MIC/main/Docs/Preview/mic.png',
     repoStatus: 'public',
     repoUrl: 'https://github.com/ejeoxlac/MIC',
+    liveUrl: 'https://mic.ejeoxlac.com',
   },
   {
     id: '06',

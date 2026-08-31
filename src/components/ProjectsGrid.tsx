@@ -5,6 +5,7 @@ import {
   ArrowRight,
   Boxes,
   ChevronDown,
+  ExternalLink,
   FileText,
   Lock,
   Map,
@@ -231,6 +232,18 @@ function ProjectCard({
       </div>
 
       <div className={styles.projectCardFooter}>
+        {project.liveUrl && (
+          <a
+            href={project.liveUrl}
+            className={styles.projectCardLink}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Ver sitio
+            <ExternalLink size={16} aria-hidden="true" />
+          </a>
+        )}
+
         {isPublic && (
           <a
             href={project.repoUrl}
