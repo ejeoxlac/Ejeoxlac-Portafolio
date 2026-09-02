@@ -1,6 +1,8 @@
+import { SITE_URL } from '@/lib/portfolio'
 import styles from '@/styles/portfolio.module.css'
 
 const FOOTER_SOCIAL = [
+  { href: SITE_URL, label: 'Web' },
   { href: 'https://github.com/ejeoxlac', label: 'GitHub' },
   { href: 'https://www.linkedin.com/in/ejeoxlac/', label: 'LinkedIn' },
   { href: 'https://x.com/ejeoxlac', label: 'X' },

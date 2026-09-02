@@ -7,10 +7,10 @@ import {
   ChevronDown,
   ExternalLink,
   FileText,
+  Globe,
   Lock,
   Map,
   Monitor,
-  QrCode,
   Truck,
   Users,
   type LucideIcon,
@@ -20,6 +20,7 @@ import { createPortal } from 'react-dom'
 import styles from '@/styles/portfolio.module.css'
 
 const PROJECT_ICONS: Record<string, LucideIcon> = {
+  Ejeoxlac: Globe,
   'GRAU-UPTZ': Boxes,
   SIGUM: Truck,
   SCCSC: Users,
@@ -28,7 +29,7 @@ const PROJECT_ICONS: Record<string, LucideIcon> = {
   SIEI: Monitor,
 }
 
-const FEATURED_PROJECT_ID = '02'
+const FEATURED_PROJECT_ID = '00'
 const PREVIEW_WIDTH = 320
 const PREVIEW_HEIGHT = 180
 const PREVIEW_GAP = 16
@@ -220,7 +221,7 @@ function ProjectCard({
         {isFeatured && !isExpanded && (
           <div className={styles.projectCardPreview}>
             <div className={styles.projectCardPreviewInner}>
-              <QrCode
+              <Globe
                 className={styles.projectCardPreviewIcon}
                 size={72}
                 strokeWidth={1}

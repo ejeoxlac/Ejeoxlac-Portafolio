@@ -174,7 +174,22 @@ function projectPlaceholder(name: string, from: string, to: string): string {
   return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`
 }
 
+export const SITE_URL = 'https://ejeoxlac.com'
+
 export const PROJECTS: Project[] = [
+  {
+    id: '00',
+    name: 'Ejeoxlac',
+    full: 'Sitio web principal — blog y directorio de recursos',
+    role: 'Desarrollador principal',
+    desc: 'Sitio personal con blog y directorio de recursos sobre tecnología, con estilo Technical Noir. Incluye tutoriales, notas, RSS y fichas de herramientas.',
+    tech: ['Astro', 'Tailwind CSS', 'TypeScript', 'Markdown', 'Cloudflare'],
+    tag: 'Publicado',
+    year: '2026',
+    image: projectPlaceholder('Ejeoxlac', '#0A0A0A', '#1c1910'),
+    repoStatus: 'public',
+    liveUrl: SITE_URL,
+  },
   {
     id: '01',
     name: 'GRAU-UPTZ',

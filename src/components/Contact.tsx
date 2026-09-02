@@ -2,8 +2,10 @@ import { ArrowRight, ExternalLink } from 'lucide-react'
 import {
   BeaconsIcon,
   GithubIcon,
+  GlobeIcon,
   LinkedinIcon,
 } from '@/components/icons/brand-icons'
+import { SITE_URL } from '@/lib/portfolio'
 import styles from '@/styles/portfolio.module.css'
 import Section from './Section'
 
@@ -14,6 +16,12 @@ const CONTACT_PRIMARY = {
 }
 
 const CONTACT_LINKS = [
+  {
+    href: SITE_URL,
+    label: 'Web',
+    ariaLabel: 'Sitio web principal ejeoxlac.com',
+    Icon: GlobeIcon,
+  },
   {
     href: 'https://www.linkedin.com/in/ejeoxlac/',
     label: 'LinkedIn',
