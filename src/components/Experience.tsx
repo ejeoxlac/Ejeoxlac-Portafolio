@@ -1,13 +1,7 @@
-import { EDUCATION } from '@/lib/portfolio'
+import { EDUCATION, EXPERIENCE } from '@/lib/portfolio'
 import { Terminal } from 'lucide-react'
 import styles from '@/styles/portfolio.module.css'
 import Section from './Section'
-
-const EXPERIENCE_BULLETS = [
-  'Asistencia, reparación y mantenimiento técnico de equipos de cómputo.',
-  'Creación de oficios, papeleo y control de órdenes de trabajo.',
-  'Colaboración con el sistema administrativo.',
-]
 
 export default function Experience() {
   return (
@@ -46,32 +40,28 @@ export default function Experience() {
 
           <div className={styles.experienceCol}>
             <h3 className={styles.timelineHeader}>Experiencia</h3>
-            <div className={styles.glassPanel}>
-              <div className={styles.experienceJobHeader}>
-                <p className={styles.timelineLinePeriodActive}>
-                  Jul. 2023 – Actualidad
-                </p>
-                <p className={styles.timelineTitle}>
-                  Operador técnico y asistente informático
-                </p>
-                <p className={styles.timelineOrg}>
-                  Alcaldía de Cabimas, Zulia
-                </p>
+            {EXPERIENCE.map((job) => (
+              <div key={job.period} className={styles.glassPanel}>
+                <div className={styles.experienceJobHeader}>
+                  <p className={styles.timelineLinePeriodActive}>{job.period}</p>
+                  <p className={styles.timelineTitle}>{job.title}</p>
+                  <p className={styles.timelineOrg}>{job.org}</p>
+                </div>
+                <ul className={styles.experienceList}>
+                  {job.bullets.map((item) => (
+                    <li key={item} className={styles.experienceListItem}>
+                      <Terminal
+                        className={styles.experienceListIcon}
+                        size={18}
+                        strokeWidth={1.5}
+                        aria-hidden="true"
+                      />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <ul className={styles.experienceList}>
-                {EXPERIENCE_BULLETS.map((item) => (
-                  <li key={item} className={styles.experienceListItem}>
-                    <Terminal
-                      className={styles.experienceListIcon}
-                      size={18}
-                      strokeWidth={1.5}
-                      aria-hidden="true"
-                    />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            ))}
           </div>
         </div>
       </div>

@@ -8,6 +8,7 @@ import {
   ExternalLink,
   FileText,
   Globe,
+  GraduationCap,
   Lock,
   Map,
   Monitor,
@@ -21,6 +22,7 @@ import styles from '@/styles/portfolio.module.css'
 
 const PROJECT_ICONS: Record<string, LucideIcon> = {
   Ejeoxlac: Globe,
+  'UPTZ Web': GraduationCap,
   'GRAU-UPTZ': Boxes,
   SIGUM: Truck,
   SCCSC: Users,

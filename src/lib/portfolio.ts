@@ -191,6 +191,19 @@ export const PROJECTS: Project[] = [
     liveUrl: SITE_URL,
   },
   {
+    id: '07',
+    name: 'UPTZ Web',
+    full: 'Sitio web institucional — Universidad Politécnica Territorial del Zulia',
+    role: 'Líder del equipo de desarrollo (UDs89)',
+    desc: 'Sitio web oficial de la UPTZ: identidad institucional, carreras, noticias, autoridades, cobertura territorial en Cabimas y Ciudad Ojeda, y acceso a servicios estudiantiles. Lideré el desarrollo con apoyo de miembros de diseño gráfico de la universidad para los banners y piezas visuales solicitadas.',
+    tech: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'OpenStreetMap'],
+    tag: 'Publicado',
+    year: '2026',
+    image: projectPlaceholder('UPTZ', '#0c2340', '#1e4a7a'),
+    repoStatus: 'private',
+    liveUrl: 'https://uptzulia.edu.ve',
+  },
+  {
     id: '01',
     name: 'GRAU-UPTZ',
     full: 'Sistema de Gestión de Procesos Académicos Universitarios',
@@ -337,6 +350,36 @@ export const EDUCATION = [
     period: '2015 – 2020',
     title: 'Bachiller',
     org: 'U.E.N Julia Añez Gabaldón / U.E.P Santa Marta',
+  },
+]
+
+export type ExperienceEntry = {
+  period: string
+  title: string
+  org: string
+  bullets: string[]
+}
+
+export const EXPERIENCE: ExperienceEntry[] = [
+  {
+    period: 'Ene. 2026 – Actualidad',
+    title: 'Ingeniero informático',
+    org: 'Universidad Politécnica Territorial del Zulia',
+    bullets: [
+      'Soporte técnico y mantenimiento de equipos y sistemas informáticos institucionales.',
+      'Desarrollo de aplicaciones.',
+      'Apoyo a la infraestructura tecnológica de la universidad.',
+    ],
+  },
+  {
+    period: 'Jul. 2023 – Ago. 2026',
+    title: 'Operador técnico y asistente informático',
+    org: 'Alcaldía de Cabimas, Zulia',
+    bullets: [
+      'Asistencia, reparación y mantenimiento técnico de equipos de cómputo.',
+      'Creación de oficios, papeleo y control de órdenes de trabajo.',
+      'Colaboración con el sistema administrativo.',
+    ],
   },
 ]
 
