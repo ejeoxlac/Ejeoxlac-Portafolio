@@ -141,6 +141,8 @@ export const TECHNOLOGIES = {
   row2: rotate(TECH_STACK, 4),
 }
 
+export type ProjectCategory = 'web' | 'app'
+
 export type Project = {
   id: string
   name: string
@@ -151,6 +153,7 @@ export type Project = {
   tag: string
   year: string
   image: string
+  category: ProjectCategory
   repoStatus: 'public' | 'private'
   repoUrl?: string
   liveUrl?: string
@@ -187,6 +190,7 @@ export const PROJECTS: Project[] = [
     tag: 'Publicado',
     year: '2026',
     image: projectPlaceholder('Ejeoxlac', '#0A0A0A', '#1c1910'),
+    category: 'web',
     repoStatus: 'public',
     liveUrl: SITE_URL,
   },
@@ -200,6 +204,7 @@ export const PROJECTS: Project[] = [
     tag: 'Publicado',
     year: '2026',
     image: projectPlaceholder('UPTZ', '#0c2340', '#1e4a7a'),
+    category: 'web',
     repoStatus: 'private',
     liveUrl: 'https://uptzulia.edu.ve',
   },
@@ -224,6 +229,7 @@ export const PROJECTS: Project[] = [
     tag: 'En desarrollo activo',
     year: '2026',
     image: projectPlaceholder('GRAU-UPTZ', '#1e293b', '#334155'),
+    category: 'app',
     repoStatus: 'private',
   },
   {
@@ -236,6 +242,7 @@ export const PROJECTS: Project[] = [
     tag: 'Desarrollado — no implementado',
     year: '2025',
     image: projectPlaceholder('SIGUM', '#0f172a', '#1e3a5f'),
+    category: 'app',
     repoStatus: 'private',
   },
   {
@@ -258,6 +265,7 @@ export const PROJECTS: Project[] = [
     tag: '80% — Pausado',
     year: '2025',
     image: projectPlaceholder('SCCSC', '#14532d', '#1e3a5f'),
+    category: 'app',
     repoStatus: 'private',
   },
   {
@@ -279,6 +287,7 @@ export const PROJECTS: Project[] = [
     tag: 'Pausado — mejoras pendientes',
     year: '2024',
     image: projectPlaceholder('PIRC', '#3f2e1e', '#5c4033'),
+    category: 'app',
     repoStatus: 'private',
   },
   {
@@ -291,6 +300,7 @@ export const PROJECTS: Project[] = [
     tag: 'Publicado',
     year: '2025',
     image: 'https://raw.githubusercontent.com/ejeoxlac/MIC/main/Docs/Preview/mic.png',
+    category: 'web',
     repoStatus: 'public',
     repoUrl: 'https://github.com/ejeoxlac/MIC',
     liveUrl: 'https://mic.ejeoxlac.com',
@@ -305,6 +315,7 @@ export const PROJECTS: Project[] = [
     tag: 'En planes de migrar a web',
     year: '2024',
     image: projectPlaceholder('SIEI', '#1e293b', '#475569'),
+    category: 'app',
     repoStatus: 'public',
     repoUrl: 'https://github.com/ejeoxlac/SIEI',
   },

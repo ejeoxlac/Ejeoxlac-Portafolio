@@ -1,6 +1,6 @@
 'use client'
 
-import type { Project } from '@/lib/portfolio'
+import type { Project, ProjectCategory } from '@/lib/portfolio'
 import {
   ArrowRight,
   Boxes,
@@ -17,6 +17,7 @@ import {
   type LucideIcon,
 } from 'lucide-react'
 import { useEffect, useRef, useState, type MouseEvent } from 'react'
+import { AnimatePresence, LayoutGroup, motion, useReducedMotion } from 'motion/react'
 import { createPortal } from 'react-dom'
 import styles from '@/styles/portfolio.module.css'
 
@@ -36,6 +37,20 @@ const PREVIEW_WIDTH = 320
 const PREVIEW_HEIGHT = 180
 const PREVIEW_GAP = 16
 const PREVIEW_LERP = 0.13
+
+type ProjectFilter = 'all' | ProjectCategory
+
+const PROJECT_FILTERS: { id: ProjectFilter; label: string }[] = [
+  { id: 'all', label: 'Todos' },
+  { id: 'web', label: 'Webs' },
+  { id: 'app', label: 'Aplicaciones' },
+]
+
+const projectCardMotion = {
+  hidden: { opacity: 0, y: 28, scale: 0.97 },
+  visible: { opacity: 1, y: 0, scale: 1 },
+  exit: { opacity: 0, y: -16, scale: 0.97 },
+}
 
 function getCursorPreviewPosition(clientX: number, clientY: number) {
   const vw = window.innerWidth
@@ -283,22 +298,107 @@ function ProjectCard({
 }
 
 export default function ProjectsGrid({ projects }: { projects: Project[] }) {
+  const prefersReducedMotion = useReducedMotion()
   const [expandedId, setExpandedId] = useState<string | null>(null)
+  const [activeFilter, setActiveFilter] = useState<ProjectFilter>('all')
+
+  const cardTransition = prefersReducedMotion
+    ? { duration: 0 }
+    : { duration: 0.38, ease: [0.16, 1, 0.3, 1] as const }
+
+  const filterTransition = prefersReducedMotion
+    ? { duration: 0 }
+    : { type: 'spring' as const, stiffness: 420, damping: 34 }
+
+  const filteredProjects = projects.filter(
+    (project) => activeFilter === 'all' || project.category === activeFilter,
+  )
+
+  const handleFilterChange = (filter: ProjectFilter) => {
+    setActiveFilter(filter)
+    setExpandedId((current) => {
+      if (!current) return null
+      const isVisible = projects.some(
+        (project) =>
+          project.id === current &&
+          (filter === 'all' || project.category === filter),
+      )
+      return isVisible ? current : null
+    })
+  }
 
   return (
-    <div className={styles.projectsGrid}>
-      {projects.map((project) => (
-        <ProjectCard
-          key={project.id}
-          project={project}
-          isExpanded={expandedId === project.id}
-          onToggleExpand={() =>
-            setExpandedId((current) =>
-              current === project.id ? null : project.id,
+    <>
+      <LayoutGroup>
+        <div
+          className={styles.projectsFilters}
+          role="tablist"
+          aria-label="Filtrar proyectos"
+        >
+          {PROJECT_FILTERS.map((filter) => {
+            const isActive = activeFilter === filter.id
+
+            return (
+              <button
+                key={filter.id}
+                type="button"
+                role="tab"
+                aria-selected={isActive}
+                className={`${styles.projectsFilterBtn} ${
+                  isActive ? styles.projectsFilterBtnActive : ''
+                }`}
+                onClick={() => handleFilterChange(filter.id)}
+              >
+                {isActive && (
+                  <motion.span
+                    layoutId="projectsFilterHighlight"
+                    className={styles.projectsFilterBtnBg}
+                    transition={filterTransition}
+                    aria-hidden="true"
+                  />
+                )}
+                <span className={styles.projectsFilterBtnLabel}>
+                  {filter.label}
+                </span>
+              </button>
             )
-          }
-        />
-      ))}
-    </div>
+          })}
+        </div>
+
+        <motion.div layout className={styles.projectsGrid}>
+          <AnimatePresence mode="popLayout">
+            {filteredProjects.map((project, index) => (
+              <motion.div
+                key={project.id}
+                layout
+                className={`${styles.projectsGridItem} ${
+                  project.id === FEATURED_PROJECT_ID
+                    ? styles.projectsGridItemFeatured
+                    : ''
+                }`}
+                variants={projectCardMotion}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                transition={{
+                  ...cardTransition,
+                  delay: prefersReducedMotion ? 0 : index * 0.05,
+                }}
+              >
+                <ProjectCard
+                  project={project}
+                  isExpanded={expandedId === project.id}
+                  onToggleExpand={() =>
+                    setExpandedId((current) =>
+                      current === project.id ? null : project.id,
+                    )
+                  }
+                />
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
+      </LayoutGroup>
+    </>
   )
 }
