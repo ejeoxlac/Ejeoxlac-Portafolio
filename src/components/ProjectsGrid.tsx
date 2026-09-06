@@ -152,7 +152,8 @@ function ProjectCard({
     setIsHovering(false)
   }
 
-  const showCursorPreview = isMounted && canHover && isHovering && !isExpanded
+  const showCursorPreview =
+    !isFeatured && isMounted && canHover && isHovering && !isExpanded
 
   const cursorPreview = showCursorPreview ? (
     <div
@@ -246,12 +247,14 @@ function ProjectCard({
         {isFeatured && !isExpanded && (
           <div className={styles.projectCardPreview}>
             <div className={styles.projectCardPreviewInner}>
-              <Globe
-                className={styles.projectCardPreviewIcon}
-                size={72}
-                strokeWidth={1}
-                aria-hidden="true"
+              <SmoothImage
+                src={project.image}
+                alt={`Vista previa de ${project.name}`}
+                className={styles.projectCardPreviewImage}
+                loading="lazy"
+                decoding="async"
               />
+              <div className={styles.projectCardPreviewOverlay} />
             </div>
           </div>
         )}

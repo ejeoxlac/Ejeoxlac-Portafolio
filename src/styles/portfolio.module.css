@@ -1243,14 +1243,19 @@
   overflow: hidden;
 }
 
-.projectCardPreviewIcon {
-  color: var(--border);
-  transition: color 0.3s ease, transform 0.35s ease, opacity 0.35s ease;
+.projectCardPreviewImage {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
-.projectCardV4:hover .projectCardPreviewIcon {
-  color: rgba(210, 240, 0, 0.45);
-  transform: scale(1.05);
+.projectCardPreviewOverlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(to top, rgba(19, 19, 21, 0.2), transparent);
 }
 
 .projectCardFooter {
