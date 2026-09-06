@@ -277,7 +277,7 @@ export const PROJECTS: Project[] = [
     tech: ['Astro', 'Tailwind CSS', 'TypeScript', 'Markdown', 'Cloudflare'],
     tag: 'Publicado',
     year: '2026',
-    image: projectPlaceholder('Ejeoxlac', '#0A0A0A', '#1c1910'),
+    image: '/images/projects/ejeoxlac-web.png',
     category: 'web',
     repoStatus: 'public',
     liveUrl: SITE_URL,
