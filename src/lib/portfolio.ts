@@ -17,7 +17,16 @@ export const SKILLS = [
   { name: 'C#', level: 'Básico', pct: 35 },
 ]
 
-export type TechCategory = 'language' | 'library' | 'framework' | 'database' | 'tool' | 'os'
+export type TechCategory =
+  | 'language'
+  | 'web'
+  | 'library'
+  | 'framework'
+  | 'database'
+  | 'documentation'
+  | 'design'
+  | 'tool'
+  | 'os'
 
 export type Technology = {
   name: string
@@ -45,6 +54,26 @@ const TECH_ITEMS: Technology[] = [
     name: 'SQL',
     category: 'language',
     icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg',
+  },
+  {
+    name: 'JavaScript',
+    category: 'language',
+    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg',
+  },
+  {
+    name: 'HTML5',
+    category: 'web',
+    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg',
+  },
+  {
+    name: 'CSS3',
+    category: 'web',
+    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg',
+  },
+  {
+    name: 'Tailwind CSS',
+    category: 'web',
+    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg',
   },
   {
     name: 'Pandas',
@@ -87,6 +116,26 @@ const TECH_ITEMS: Technology[] = [
     icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg',
   },
   {
+    name: 'PostgreSQL',
+    category: 'database',
+    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg',
+  },
+  {
+    name: 'Microsoft SQL Server',
+    category: 'database',
+    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-plain.svg',
+  },
+  {
+    name: 'Blender',
+    category: 'design',
+    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/blender/blender-original.svg',
+  },
+  {
+    name: 'Krita',
+    category: 'design',
+    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/krita/krita-original.svg',
+  },
+  {
     name: 'XAMPP',
     category: 'tool',
     icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apache/apache-original.svg',
@@ -100,6 +149,41 @@ const TECH_ITEMS: Technology[] = [
     name: 'Obsidian',
     category: 'tool',
     icon: 'https://cdn.simpleicons.org/obsidian/7C3AED',
+  },
+  {
+    name: 'GitHub',
+    category: 'tool',
+    icon: 'https://cdn.simpleicons.org/github/FFFFFF',
+  },
+  {
+    name: 'VS Code',
+    category: 'tool',
+    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg',
+  },
+  {
+    name: 'NPM',
+    category: 'tool',
+    icon: 'https://cdn.simpleicons.org/npm/CB3837',
+  },
+  {
+    name: 'PNPM',
+    category: 'tool',
+    icon: 'https://cdn.simpleicons.org/pnpm/F69220',
+  },
+  {
+    name: 'Vercel',
+    category: 'tool',
+    icon: 'https://cdn.simpleicons.org/vercel/FFFFFF',
+  },
+  {
+    name: 'Coolify',
+    category: 'tool',
+    icon: 'https://cdn.simpleicons.org/coolify/7C3AED',
+  },
+  {
+    name: 'Cursor',
+    category: 'tool',
+    icon: 'https://cdn.simpleicons.org/cursor/FFFFFF',
   },
   {
     name: 'Windows',
@@ -121,15 +205,19 @@ const TECH_ITEMS: Technology[] = [
 export const TECH_STACK: Technology[] = TECH_ITEMS
 
 export const TECH_STACK_GROUPS = [
-  { title: 'Lenguajes de programación', category: 'language' as const },
-  { title: 'Bibliotecas', category: 'library' as const },
-  { title: 'Frameworks', category: 'framework' as const },
-  { title: 'Bases de datos', category: 'database' as const },
-  { title: 'Herramientas para desarrollo', category: 'tool' as const },
-  { title: 'Sistemas operativos', category: 'os' as const },
+  { title: 'Lenguajes de programación', categories: ['language'] },
+  { title: 'Desarrollo web', categories: ['web'] },
+  { title: 'Bibliotecas', categories: ['library'] },
+  { title: 'Frameworks', categories: ['framework'] },
+  { title: 'Bases de datos', categories: ['database'] },
+  { title: 'Diseño y modelado 3D', categories: ['design'] },
+  { title: 'Herramientas y DevOps', categories: ['tool'] },
+  { title: 'Sistemas operativos', categories: ['os'] },
 ].map((group) => ({
   title: group.title,
-  items: TECH_ITEMS.filter((t) => t.category === group.category),
+  items: TECH_ITEMS.filter((t) =>
+    (group.categories as TechCategory[]).includes(t.category),
+  ),
 }))
 
 // Misma cantidad de iconos en ambas filas para que el carrusel llene el ancho
