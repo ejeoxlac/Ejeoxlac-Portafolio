@@ -5,6 +5,7 @@ import type React from "react"
 import { useState, useRef, useEffect } from "react"
 import { ArrowUpRight, Lock } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
+import { SmoothImage } from "@/components/ui/SmoothImage"
 
 function GitHubIcon({ className }: { className?: string }) {
   return (
@@ -146,11 +147,13 @@ export function ProjectShowcase({
         >
           <div className="relative w-[280px] h-[180px] bg-secondary rounded-xl overflow-hidden">
             {projects.map((project, index) => (
-              <img
+              <SmoothImage
                 key={`${project.title}-${index}`}
                 src={project.image}
                 alt={project.title}
                 className="absolute inset-0 w-full h-full object-cover transition-all duration-500 ease-out"
+                loading="lazy"
+                decoding="async"
                 style={{
                   opacity: hoveredIndex === index ? 1 : 0,
                   scale: hoveredIndex === index ? 1 : 1.1,
@@ -253,10 +256,12 @@ export function ProjectShowcase({
                   {isExpanded && (
                     <div className="mt-3 space-y-2 text-sm">
                       <div className="relative mb-1 h-24 w-36 overflow-hidden rounded-md bg-secondary shadow-sm [@media(hover:hover)]:hidden">
-                        <img
+                        <SmoothImage
                           src={project.image}
                           alt={project.title}
                           className="h-full w-full object-cover"
+                          loading="lazy"
+                          decoding="async"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent" />
                       </div>

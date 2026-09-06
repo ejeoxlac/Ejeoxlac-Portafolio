@@ -19,6 +19,7 @@ import {
 import { useEffect, useRef, useState, type MouseEvent } from 'react'
 import { AnimatePresence, LayoutGroup, motion, useReducedMotion } from 'motion/react'
 import { createPortal } from 'react-dom'
+import { SmoothImage } from './ui/SmoothImage'
 import styles from '@/styles/portfolio.module.css'
 
 const PROJECT_ICONS: Record<string, LucideIcon> = {
@@ -162,7 +163,12 @@ function ProjectCard({
       }}
       aria-hidden="true"
     >
-      <img src={project.image} alt="" />
+      <SmoothImage
+        src={project.image}
+        alt=""
+        loading="lazy"
+        decoding="async"
+      />
       <div className={styles.projectCursorPreviewOverlay} />
     </div>
   ) : null
@@ -206,9 +212,11 @@ function ProjectCard({
           {isExpanded && (
             <div className={styles.projectCardDetails}>
               <div className={styles.projectCardDetailImage}>
-                <img
+                <SmoothImage
                   src={project.image}
                   alt={`Vista previa de ${project.name}`}
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className={styles.projectCardDetailImageOverlay} />
               </div>

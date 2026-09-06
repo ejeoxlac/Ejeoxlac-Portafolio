@@ -1,0 +1,47 @@
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.image {
+  opacity: 0.2;
+  filter: blur(10px);
+  transform: scale(1.04);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.03) 25%,
+    rgba(210, 240, 0, 0.12) 50%,
+    rgba(255, 255, 255, 0.03) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.6s ease-in-out infinite;
+  transition:
+    opacity 0.55s ease,
+    filter 0.7s ease,
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    background 0.55s ease;
+}
+
+.imageLoaded {
+  opacity: 1;
+  filter: blur(0);
+  transform: scale(1);
+  background: transparent;
+  animation: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .image,
+  .imageLoaded {
+    opacity: 1;
+    filter: none;
+    transform: none;
+    background: transparent;
+    animation: none;
+    transition: none;
+  }
+}
