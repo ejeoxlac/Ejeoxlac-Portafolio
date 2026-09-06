@@ -291,7 +291,7 @@ export const PROJECTS: Project[] = [
     tech: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'OpenStreetMap'],
     tag: 'Publicado',
     year: '2026',
-    image: projectPlaceholder('UPTZ', '#0c2340', '#1e4a7a'),
+    image: '/images/projects/uptz-web.webp',
     category: 'web',
     repoStatus: 'private',
     liveUrl: 'https://uptzulia.edu.ve',
