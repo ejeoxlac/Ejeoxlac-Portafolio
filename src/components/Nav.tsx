@@ -116,7 +116,16 @@ export default function Nav() {
           className={styles.navLogoBtn}
           onClick={() => handleNavClick('inicio')}
         >
-          Ejeoxlac<span className={styles.navDot}>.</span>
+          <img
+            src="/brand/e-icono.svg"
+            alt=""
+            width={36}
+            height={36}
+            className={styles.navLogoMark}
+          />
+          <span>
+            Ejeoxlac<span className={styles.navDot}>.</span>
+          </span>
         </button>
 
         <div className={styles.navLinks}>

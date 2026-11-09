@@ -14,7 +14,16 @@ export default function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={styles.footerInner}>
-        <span className={styles.footerBrand}>Ejeoxlac</span>
+        <span className={styles.footerBrand}>
+          <img
+            src="/brand/e-icono.svg"
+            alt=""
+            width={28}
+            height={28}
+            className={styles.footerLogo}
+          />
+          Ejeoxlac
+        </span>
         <p className={styles.footerText}>
           © {new Date().getFullYear()} - Bill Anthony
           Niño Riera — Ing. Informática
