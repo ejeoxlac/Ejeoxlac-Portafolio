@@ -229,7 +229,7 @@ export const TECHNOLOGIES = {
   row2: rotate(TECH_STACK, 4),
 }
 
-export type ProjectCategory = 'web' | 'app'
+export type ProjectCategory = 'web' | 'app' | 'resource'
 
 export type Project = {
   id: string
@@ -281,6 +281,35 @@ export const PROJECTS: Project[] = [
     category: 'web',
     repoStatus: 'public',
     liveUrl: SITE_URL,
+  },
+  {
+    id: '08',
+    name: 'WorldGeoJSON',
+    full: 'Visor de mapas GeoJSON por país',
+    role: 'Desarrollador principal',
+    desc: 'Visor de mapas que lee el GeoJSON de un repositorio por país, sin copiar los datos al proyecto. Filtra por la jerarquía administrativa y activa capas temáticas. Venezuela es el primer país, con estados, municipios, parroquias, ciudades y carreteras.',
+    tech: ['Vite', 'MapLibre GL', 'JavaScript', 'OpenStreetMap', 'pnpm'],
+    tag: 'Publicado',
+    year: '2026',
+    image: '/images/projects/worldgeojson.png',
+    category: 'web',
+    repoStatus: 'public',
+    repoUrl: 'https://github.com/ejeoxlac/WorldGeoJSON',
+    liveUrl: 'https://worldgeojson.ejeoxlac.dev/',
+  },
+  {
+    id: '09',
+    name: 'VenGeoJSON',
+    full: 'Capas geográficas de Venezuela en GeoJSON',
+    role: 'Desarrollador principal',
+    desc: 'Capas geográficas de Venezuela en GeoJSON: entidades federales, 335 municipios, 1134 parroquias, ciudades y red vial. Listas para mapas web y análisis espacial, y se sirven de forma estática, sin dependencias ni compilación.',
+    tech: ['GeoJSON', 'JavaScript', 'Node.js', 'pnpm'],
+    tag: 'Publicado',
+    year: '2026',
+    image: projectPlaceholder('VenGeoJSON', '#0f3d3e', '#1a5c4a'),
+    category: 'resource',
+    repoStatus: 'public',
+    repoUrl: 'https://github.com/ejeoxlac/VenGeoJSON',
   },
   {
     id: '07',

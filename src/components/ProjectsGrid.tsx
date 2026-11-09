@@ -5,10 +5,12 @@ import {
   ArrowRight,
   Boxes,
   ChevronDown,
+  Earth,
   ExternalLink,
   FileText,
   Globe,
   GraduationCap,
+  Layers,
   Lock,
   Map,
   Monitor,
@@ -24,6 +26,8 @@ import styles from '@/styles/portfolio.module.css'
 
 const PROJECT_ICONS: Record<string, LucideIcon> = {
   Ejeoxlac: Globe,
+  WorldGeoJSON: Earth,
+  VenGeoJSON: Layers,
   'UPTZ Web': GraduationCap,
   'GRAU-UPTZ': Boxes,
   SIGUM: Truck,
@@ -45,6 +49,7 @@ const PROJECT_FILTERS: { id: ProjectFilter; label: string }[] = [
   { id: 'all', label: 'Todos' },
   { id: 'web', label: 'Webs' },
   { id: 'app', label: 'Aplicaciones' },
+  { id: 'resource', label: 'Recurso' },
 ]
 
 const projectCardMotion = {
